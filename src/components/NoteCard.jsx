@@ -1,26 +1,58 @@
-import { useEffect,useRef } from 'react'
+import { useEffect,useRef,useState } from 'react'
 import React from 'react'
 import Trash from '../icons/Trash'
+import { setNewOffset, autoGrow, setZindex } from '../utils'
 
 const NoteCard = ({note}) => {
 
     const body=JSON.parse(note.body)
-    const position =JSON.parse(note.position)
+    const [position,setPosition] =useState(JSON.parse(note.position))
     const colors=JSON.parse(note.colors)
 
     const textAreaRef=useRef(null)
+
+    let mouseStartPosition={x:0,y:0}
+    const cardRef=useRef(null)
 
    useEffect(() => {
      autoGrow(textAreaRef);
    }, []);
 
-   function autoGrow(textAreaRef) {
-     const { current } = textAreaRef;
-     current.style.height = "auto"; // Reset the height
-     current.style.height = current.scrollHeight + "px"; // Set the new height
+ 
+   const mouseDown=(e)=>{
+    mouseStartPosition.x=e.clientX;
+    mouseStartPosition.y=e.clientY;
+
+    document.addEventListener('mousemove', mouseMove)
+    document.addEventListener('mouseup',mouseUp)
+
+    setZindex(cardRef.current)
+   }
+
+   const mouseMove=(e)=>{
+    const mouseMoveDirection = {
+      //calculating mouse positions
+      x: mouseStartPosition.x - e.clientX,
+      y: mouseStartPosition.y - e.clientY
+    }
+
+     //resetting the mouse positions
+       mouseStartPosition.x = e.clientX;
+       mouseStartPosition.y = e.clientY;
+       
+       const newPosition=setNewOffset(cardRef.current, mouseMoveDirection)
+       setPosition(newPosition)
+
+   }
+
+
+   const mouseUp=(e)=>{
+    document.removeEventListener("mousemove",mouseMove)
+    document.removeEventListener("mouseup",mouseUp)
    }
   return (
     <div
+      ref={cardRef}
       className="card"
       style={{
         backgroundColor: colors.colorBody,
@@ -29,6 +61,7 @@ const NoteCard = ({note}) => {
       }}
     >
       <div
+      onMouseDown={mouseDown}
         className="card-header"
         style={{ backgroundColor: colors.colorHeader }}
       >
@@ -36,10 +69,16 @@ const NoteCard = ({note}) => {
       </div>
 
       <div className="card-body">
-        <textarea ref={textAreaRef}
+        <textarea
+          ref={textAreaRef}
           defaultValue={body}
           style={{ color: colors.colorText }}
-          onInput={()=>{autoGrow(textAreaRef)}}
+          onInput={() => {
+            autoGrow(textAreaRef);
+          }}
+          onFocus={()=>{
+            setZindex(cardRef.current)
+          }}
         ></textarea>
       </div>
     </div>
