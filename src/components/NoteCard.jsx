@@ -1,55 +1,52 @@
-import { useEffect,useRef,useState } from 'react'
-import React from 'react'
-import Trash from '../icons/Trash'
-import { setNewOffset, autoGrow, setZindex } from '../utils'
+import { useEffect, useRef, useState } from "react";
+import React from "react";
+import Trash from "../icons/Trash";
+import { setNewOffset, autoGrow, setZindex } from "../utils";
 
-const NoteCard = ({note}) => {
+const NoteCard = ({ note }) => {
+  const [position, setPosition] = useState(JSON.parse(note.position));
+  const body = note.body;
+  const colors = JSON.parse(note.color);
 
-    const body=JSON.parse(note.body)
-    const [position,setPosition] =useState(JSON.parse(note.position))
-    const colors=JSON.parse(note.colors)
+  const textAreaRef = useRef(null);
 
-    const textAreaRef=useRef(null)
+  let mouseStartPosition = { x: 0, y: 0 };
+  const cardRef = useRef(null);
 
-    let mouseStartPosition={x:0,y:0}
-    const cardRef=useRef(null)
+  useEffect(() => {
+    autoGrow(textAreaRef);
+  }, []);
 
-   useEffect(() => {
-     autoGrow(textAreaRef);
-   }, []);
+  const mouseDown = (e) => {
+    mouseStartPosition.x = e.clientX;
+    mouseStartPosition.y = e.clientY;
 
- 
-   const mouseDown=(e)=>{
-    mouseStartPosition.x=e.clientX;
-    mouseStartPosition.y=e.clientY;
+    document.addEventListener("mousemove", mouseMove);
+    document.addEventListener("mouseup", mouseUp);
 
-    document.addEventListener('mousemove', mouseMove)
-    document.addEventListener('mouseup',mouseUp)
+    setZindex(cardRef.current);
+  };
 
-    setZindex(cardRef.current)
-   }
-
-   const mouseMove=(e)=>{
+  const mouseMove = (e) => {
     const mouseMoveDirection = {
       //calculating mouse positions
       x: mouseStartPosition.x - e.clientX,
-      y: mouseStartPosition.y - e.clientY
-    }
+      y: mouseStartPosition.y - e.clientY,
+    };
 
-     //resetting the mouse positions
-       mouseStartPosition.x = e.clientX;
-       mouseStartPosition.y = e.clientY;
-       
-       const newPosition=setNewOffset(cardRef.current, mouseMoveDirection)
-       setPosition(newPosition)
+    //resetting the mouse positions
+    mouseStartPosition.x = e.clientX;
+    mouseStartPosition.y = e.clientY;
 
-   }
+    const newPosition = setNewOffset(cardRef.current, mouseMoveDirection);
+    setPosition(newPosition);
+  };
 
+  const mouseUp = (e) => {
+    document.removeEventListener("mousemove", mouseMove);
+    document.removeEventListener("mouseup", mouseUp);
+  };
 
-   const mouseUp=(e)=>{
-    document.removeEventListener("mousemove",mouseMove)
-    document.removeEventListener("mouseup",mouseUp)
-   }
   return (
     <div
       ref={cardRef}
@@ -61,7 +58,7 @@ const NoteCard = ({note}) => {
       }}
     >
       <div
-      onMouseDown={mouseDown}
+        onMouseDown={mouseDown}
         className="card-header"
         style={{ backgroundColor: colors.colorHeader }}
       >
@@ -76,13 +73,13 @@ const NoteCard = ({note}) => {
           onInput={() => {
             autoGrow(textAreaRef);
           }}
-          onFocus={()=>{
-            setZindex(cardRef.current)
+          onFocus={() => {
+            setZindex(cardRef.current);
           }}
         ></textarea>
       </div>
     </div>
   );
-}
+};
 
-export default NoteCard
+export default NoteCard;

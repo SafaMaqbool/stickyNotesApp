@@ -1,10 +1,9 @@
-import { Client,Databases } from "appwrite";
+import { Client as SDK_Client, Databases as SDK_Databases } from "appwrite";
 
-const client = new Client()
-  .setEndpoint(import.meta.env.VITE_ENDPOINT)
-  .setProject(import.meta.env.ITE_PROJECT_ID);
+const client = new SDK_Client()
+  .setEndpoint("https://cloud.appwrite.io/v1")
+  .setProject(import.meta.env.VITE_PROJECT_ID);
 
+const database = new SDK_Databases(client);
 
-  const databases = new Databases(Client)
-
-  export {client,databases}
+export { client, database };
