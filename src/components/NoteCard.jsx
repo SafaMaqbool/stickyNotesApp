@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import Trash from "../icons/Trash";
 import { setNewOffset, autoGrow, setZindex, bodyParser } from "../utils";
-
+import { db } from "../appwrite/databases";
 const NoteCard = ({ note }) => {
   const [position, setPosition] = useState(bodyParser(note.position));
   const body = note.body;
@@ -45,7 +45,11 @@ const NoteCard = ({ note }) => {
   const mouseUp = (e) => {
     document.removeEventListener("mousemove", mouseMove);
     document.removeEventListener("mouseup", mouseUp);
+
+    const newPosition = setNewOffset(cardRef.current)
+    db.notes.update(note.$id,{'position': JSON.stringify(newPosition)});
   };
+
 
   return (
     <div
