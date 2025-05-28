@@ -3,11 +3,14 @@ import { useEffect, useRef, useState } from "react";
 import Trash from "../icons/Trash";
 import { setNewOffset, autoGrow, setZindex, bodyParser } from "../utils";
 import { db } from "../appwrite/databases";
+import Spinner from "../icons/Spinner";
 const NoteCard = ({ note }) => {
+  const [saving, setSaving] = useState(false);
+
   const [position, setPosition] = useState(bodyParser(note.position));
   const body = note.body;
   const colors = JSON.parse(note.color);
-
+  const keyUpTimer = useRef(null);
   const textAreaRef = useRef(null);
 
   let mouseStartPosition = { x: 0, y: 0 };
@@ -59,6 +62,22 @@ const NoteCard = ({ note }) => {
     } catch (error) {
       console.error("Error saving data:", error);
     }
+    setSaving(false);
+  };
+
+  const handleKeyUp = async () => {
+    //1 - Initiate "saving" state
+    setSaving(true);
+
+    //2 - If we have a timer id, clear it so we can add another two seconds
+    if (keyUpTimer.current) {
+      clearTimeout(keyUpTimer.current);
+    }
+
+    //3 - Set timer to trigger save in 2 seconds
+    keyUpTimer.current = setTimeout(() => {
+      saveData("body", textAreaRef.current.value);
+    }, 2000);
   };
 
   return (
@@ -77,6 +96,12 @@ const NoteCard = ({ note }) => {
         style={{ backgroundColor: colors.colorHeader }}
       >
         <Trash />
+        {saving && (
+          <div className="card-saving">
+            <Spinner color={colors.colorText}/>
+            <span style={{ color: colors.colorText }}>Saving...</span>
+          </div>
+        )}
       </div>
 
       <div className="card-body">
