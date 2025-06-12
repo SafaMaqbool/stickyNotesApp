@@ -12,9 +12,7 @@ const NotesPage = () => {
   }, []);
 
   const init = async () => {
-    const response = await db.notes.list()
-  
-
+    const response = await db.notes.list();
     console.log(response);
     setNotes(response.documents);
   };

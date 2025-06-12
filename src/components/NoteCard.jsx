@@ -98,7 +98,7 @@ const NoteCard = ({ note }) => {
         <Trash />
         {saving && (
           <div className="card-saving">
-            <Spinner color={colors.colorText}/>
+            <Spinner color={colors.colorText} />
             <span style={{ color: colors.colorText }}>Saving...</span>
           </div>
         )}
@@ -106,6 +106,7 @@ const NoteCard = ({ note }) => {
 
       <div className="card-body">
         <textarea
+          onKeyUp={handleKeyUp}
           ref={textAreaRef}
           defaultValue={body}
           style={{ color: colors.colorText }}
