@@ -4,7 +4,7 @@ import Trash from "../icons/Trash";
 import { setNewOffset, autoGrow, setZindex, bodyParser } from "../utils";
 import { db } from "../appwrite/databases";
 import Spinner from "../icons/Spinner";
-const NoteCard = ({ note, setNotes }) => {
+const NoteCard = ({ note }) => {
   const [saving, setSaving] = useState(false);
 
   const [position, setPosition] = useState(bodyParser(note.position));
@@ -101,7 +101,7 @@ const NoteCard = ({ note, setNotes }) => {
         style={{ backgroundColor: colors.colorHeader }}
       >
         
-        <DeleteButton noteId={note.$id}  setNotes={setNotes}/>
+        <DeleteButton noteId={note.$id}/>
         {saving && (
           <div className="card-saving">
             <Spinner color={colors.colorText} />
