@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import DeleteButton from './DeleteButton'
-import Trash from "../icons/Trash";
 import { setNewOffset, autoGrow, setZindex, bodyParser } from "../utils";
 import { db } from "../appwrite/databases";
 import Spinner from "../icons/Spinner";
@@ -18,6 +17,7 @@ const NoteCard = ({ note }) => {
 
   useEffect(() => {
     autoGrow(textAreaRef);
+    setZindex(cardRef.current);
   }, []);
 
   const mouseDown = (e) => {
