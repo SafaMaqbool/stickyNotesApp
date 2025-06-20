@@ -13,7 +13,7 @@ const NoteCard = ({ note }) => {
   const colors = JSON.parse(note.color);
   const keyUpTimer = useRef(null);
   const textAreaRef = useRef(null);
-  const { selectedNote,setSelectedNote } = useContext(NoteContext);
+  const { selectedNote, setSelectedNote } = useContext(NoteContext);
   const isSelected = selectedNote?.$id === note.$id;
   let mouseStartPosition = { x: 0, y: 0 };
   const cardRef = useRef(null);
@@ -96,7 +96,11 @@ const NoteCard = ({ note }) => {
         backgroundColor: colors.colorBody,
         left: `${position.x}px`,
         top: `${position.y}px`,
-        border: isSelected ? "2px solid #FFD54F" : "1px solid transparent",
+        border: isSelected
+          ? `2px solid ${colors.colorHeader}`
+          : "1px solid transparent",
+        outline: isSelected ? `3px solid ${colors.colorHeader}55` : "none",
+        outlineOffset: "3px",
       }}
     >
       <div
