@@ -7,7 +7,7 @@ const Controls = () => {
     <div id="controls">
       <AddButton />
       {colors.map((color)=>(
-        <Color key={colors.id} color={color}/>
+        <Color key={color.id} color={color}/>
       )
 
       )}
