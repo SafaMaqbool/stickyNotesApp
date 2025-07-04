@@ -77,12 +77,13 @@ Ideal for brainstorming, quick reminders, or visual organization — right in yo
 
 ---
 
-## 🎥 Demo Video
+## 🎥 Preview
 
-You can preview the app in action below:
-
-![Sticky Notes Demo](./assets/Vite%20React%20-%20Google%20Chrome%202025-07-04%2021-11-52.gif)
-
+<div align="center">
+  <img src="./assets/Vite%20React%20-%20Google%20Chrome%202025-07-04%2021-11-52.gif" 
+       alt="Sticky Notes Demo" 
+       style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 90%; max-width: 700px;" />
+</div>
 
 
 ## 📬 Feedback & Collaboration
