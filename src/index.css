@@ -130,3 +130,38 @@ textarea:focus {
     height: 45px;
     width: 45px;
 }
+/* @media (max-width: 600px) {
+    #app {
+      padding: 1rem;
+      overflow-x: auto;
+    }
+  
+    .card {
+      width: 90vw;
+      max-width: 100%;
+    }
+  
+    #controls {
+      position: fixed;
+      top: auto;
+      bottom: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      flex-direction: row;
+      gap: 0.5em;
+      padding: 0.5em 1em;
+      border-radius: 20px;
+    }
+  
+    #add-btn, .color {
+      height: 35px;
+      width: 35px;
+    }
+  
+    #add-btn:hover,
+    .color:hover {
+      height: 40px;
+      width: 40px;
+    }
+  }
+   */
