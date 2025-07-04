@@ -76,14 +76,22 @@ Ideal for brainstorming, quick reminders, or visual organization — right in yo
 * ⏰ Reminders and timestamps
 
 ---
-
-## 🎥 Preview
+## 🎥 Live Demo
 
 <p align="center">
   <a href="./assets/demo.mp4" target="_blank">
-    <img src="./assets/stickyNotes.gif" alt="Sticky Notes App Demo" width="700" style="border-radius: 12px;" />
+    <img 
+      src="./assets/stickyNotes.gif" 
+      alt="Sticky Notes App Demo" 
+      width="700" 
+      style="border-radius: 16px; box-shadow: 0 0 15px rgba(0,0,0,0.15);" />
   </a>
 </p>
+
+<p align="center">
+  <i>Click the preview above to watch the full demo video</i>
+</p>
+
 
 
 ## 📬 Feedback & Collaboration
