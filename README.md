@@ -79,14 +79,7 @@ Ideal for brainstorming, quick reminders, or visual organization — right in yo
 
 ## 🎥 Preview
 
-<div align="center">
-  <a href="https://stickynotesapp.vercel.app" target="_blank">
-    <img src="./assets/Vite%20React%20-%20Google%20Chrome%202025-07-04%2021-11-52.gif" 
-         alt="Sticky Notes Demo" 
-         style="border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); width: 90%; max-width: 700px;" />
-  </a>
-</div>
-
+<video src="./assets/demo.mp4" controls autoplay loop muted playsinline width="100%" />
 
 
 ## 📬 Feedback & Collaboration
