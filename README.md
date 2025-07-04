@@ -79,7 +79,11 @@ Ideal for brainstorming, quick reminders, or visual organization — right in yo
 
 ## 🎥 Preview
 
-<video src="./assets/demo.mp4" controls autoplay loop muted playsinline width="100%" />
+<p align="center">
+  <a href="./assets/demo.mp4" target="_blank">
+    <img src="./assets/stickyNotes.gif" alt="Sticky Notes App Demo" width="700" style="border-radius: 12px;" />
+  </a>
+</p>
 
 
 ## 📬 Feedback & Collaboration
