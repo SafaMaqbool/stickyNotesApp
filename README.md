@@ -79,24 +79,11 @@ Ideal for brainstorming, quick reminders, or visual organization — right in yo
 
 ## 🎥 Demo Video
 
-To add a demo video, you have two options:
+You can preview the app in action below:
 
-1. **Upload to GitHub and embed**:
-   ```markdown
-   ![Demo Video](./path-to-video/demo.mp4)
-   ```
+![Sticky Notes Demo](./assets/Vite%20React%20-%20Google%20Chrome%202025-07-04%2021-11-52.gif)
 
-2. **Embed from YouTube/Vimeo** (recommended):
-   ```html
-   <div align="center">
-     <a href="https://youtu.be/YOUR_VIDEO_ID">
-       <img src="https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg" alt="Demo Video" width="600">
-     </a>
-   </div>
-   ```
-   (Replace YOUR_VIDEO_ID with your actual video ID)
 
----
 
 ## 📬 Feedback & Collaboration
 
